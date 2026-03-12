@@ -34,7 +34,7 @@
         // ========================================================
         // URL WEB APP MILIKMU
         // ========================================================
-        const GAS_API_URL = "https://script.google.com/macros/s/AKfycbw-gjmAlFA09OJb7uJAO5YLBy4Hy1fkOP9Fi_TCOsnvfK91-xfJv-IGJQaAY98_Il2-Bg/exec";
+        const GAS_API_URL = "https://script.google.com/macros/s/AKfycbywv7eLkCPc0aTQM-cjeiKGDdSq7JEU7rwZ1sETZghz4hCjgHK37R_acF0zyPyzCn6nuQ/exec";
 
         // --- INITIAL DATA ---
         const initialJadwalRabu = {
@@ -1336,7 +1336,19 @@
             };
 
             if (isAppLoading) {
-                return (<div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center"><div className="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-4"></div><p className="text-gray-500 font-medium animate-pulse">Memuat data ART1S...</p></div>);
+                return (
+                    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center relative">
+                        {/* Loading Spinner di Tengah */}
+                        <div className="flex flex-col items-center justify-center mt-[-10vh]">
+                            <div className="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-4"></div>
+                            <p className="text-gray-500 font-medium animate-pulse">Memuat data ART1S...</p>
+                        </div>
+                        {/* Logo diantara tengah dan bawah layar (25% dari bawah) */}
+                        <div className="absolute bottom-[25%] flex flex-col items-center animate-fade-in">
+                            <img src="./art1s-outline.svg" alt="ART1S Logo" className="h-16 md:h-20 w-auto opacity-80" />
+                        </div>
+                    </div>
+                );
             }
 
             return (
@@ -1345,14 +1357,16 @@
 
                     <header className="md:hidden bg-white shadow-sm sticky top-0 z-50">
                         <div className="flex justify-between items-center px-4 py-3">
-                            <h1 className="text-xl font-extrabold text-blue-800 tracking-tight">ART1S</h1>
+                            <img src="./art1s-outline.svg" alt="ART1S Logo" className="h-8 w-auto" />
                             {isAdminLoggedIn ? (<button onClick={handleLogout} className="p-2 text-red-600 hover:text-red-800 transition"><Icon name="LogOut" className="w-5 h-5" /></button>) : (<button onClick={handleAdminClick} className="p-2 text-gray-600 hover:text-gray-900 transition"><Icon name="LogIn" className="w-5 h-5" /></button>)}
                         </div>
                     </header>
 
                     <header className="hidden md:block bg-white shadow-sm sticky top-0 z-50">
                         <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-                            <div className="flex items-center space-x-2"><h1 className="text-2xl font-extrabold text-blue-800 tracking-tight">ART1S</h1></div>
+                            <div className="flex items-center space-x-2">
+                                <img src="./art1s-outline.svg" alt="ART1S Logo" className="h-10 w-auto" />
+                            </div>
                             <nav className="flex space-x-1">
                                 {tabs.map(tab => (<button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`px-4 py-2 rounded-md font-medium transition flex items-center space-x-2 ${activeTab.startsWith(tab.id) ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'}`}><Icon name={tab.icon} className="w-4 h-4" /><span>{tab.label}</span></button>))}
                             </nav>
