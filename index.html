@@ -621,7 +621,7 @@
                 </div>
 
                 {/* Sabat */}
-                <div className="bg-white p-5 md:p-7 rounded-[1.5rem] shadow-sm border-t-[6px] border-gold-400 border-x border-b border-navy-100/60 relative">
+                <div className="bg-white p-5 md:p-7 rounded-[1.5rem] shadow-sm border-t-[6px] border-navy-800 border-x border-b border-navy-100/60 relative">
                     <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 border-b pb-4 border-navy-50">
                         <div className="flex items-center space-x-3">
                             <Icon name="Calendar" className="w-[1.4rem] h-[1.4rem] text-gold-500" />
@@ -749,7 +749,7 @@
                                 <div className="w-40 md:w-48 bg-white border border-navy-100 p-2.5 rounded-xl shadow-sm mb-4"><img src={qrisUrl} alt="QRIS GMAHK Tidar 1" className="w-full h-auto object-contain rounded-lg" crossOrigin="anonymous" /></div>
                                 <a href={qrisUrl} target="_blank" rel="noopener noreferrer" download="QRIS_GMAHK_Tidar1.jpg" className="bg-navy-900 hover:bg-navy-800 text-gold-400 px-5 py-2.5 rounded-xl text-xs font-bold transition flex items-center space-x-2 shadow"><Icon name="Download" className="w-3.5 h-3.5" /><span>Download QRIS</span></a>
                             </div>
-                            <div className="flex flex-col justify-center text-center p-6 bg-gradient-to-br from-gold-400 to-gold-500 border border-gold-300 rounded-2xl h-full shadow-sm text-navy-900">
+                            <div className="flex flex-col justify-center text-center p-6 bg-gradient-to-br from-navy-800 to-navy-900 border border-gold-300 rounded-2xl h-full shadow-sm text-gold-400">
                                 <p className="text-xs md:text-sm font-bold mb-1 tracking-wide uppercase">Atau Transfer Bank ke:</p><p className="font-extrabold text-2xl md:text-3xl tracking-widest my-2 font-mono">511-44-7777-8</p><p className="text-xs md:text-sm font-bold opacity-90">BCA a/n GMAHK Tidar 1 Surabaya</p>
                             </div>
                         </div>
@@ -1535,12 +1535,12 @@
                                             <button onClick={handleSimpanPejabat} disabled={isSavingPejabat} className={`${isSavingPejabat ? 'bg-navy-300 text-navy-500 cursor-not-allowed' : 'bg-navy-900 hover:bg-navy-800 text-gold-400 hover:text-gold-300 shadow-md hover:shadow-lg'} font-bold py-3 px-6 rounded-xl transition-all flex items-center justify-center whitespace-nowrap`}><Icon name="Save" className="w-4 h-4 mr-2" /> {isSavingPejabat ? 'Menyimpan...' : 'Simpan Perubahan'}</button>
                                         </div>
                                     </div>
-                                    
+
                                     <div className="overflow-x-auto pb-6">
                                         <div className="flex items-start gap-6 min-w-max pb-4 px-2">
                                             {kategoriPejabat.map((kat, index) => (
-                                                <div 
-                                                    key={index} 
+                                                <div
+                                                    key={index}
                                                     className="w-80 bg-navy-50/50 rounded-[1.5rem] border border-navy-100 flex flex-col max-h-[70vh]"
                                                     onDragOver={handleDragOver}
                                                     onDrop={(e) => handleDrop(e, kat)}
@@ -1557,11 +1557,11 @@
                                                             )}
                                                         </div>
                                                     </div>
-                                                    
+
                                                     {/* List Pejabat (Cards) */}
                                                     <div className="p-3 overflow-y-auto overflow-x-hidden flex-1 space-y-3 custom-scrollbar">
                                                         {dataPejabat.filter(p => p.kategori === kat || (kat === "Lainnya" && (!p.kategori || !kategoriPejabat.includes(p.kategori)))).map(p => (
-                                                            <div 
+                                                            <div
                                                                 key={p.id}
                                                                 draggable
                                                                 onDragStart={(e) => handleDragStart(e, p)}
@@ -1594,7 +1594,7 @@
                                                         ))}
                                                         {dataPejabat.filter(p => p.kategori === kat || (kat === "Lainnya" && (!p.kategori || !kategoriPejabat.includes(p.kategori)))).length === 0 && (
                                                             <div className="border border-dashed border-navy-200 rounded-xl p-4 text-center text-navy-400 text-xs font-semibold py-8">
-                                                                Kosong<br/>Tarik kartu ke area ini
+                                                                Kosong<br />Tarik kartu ke area ini
                                                             </div>
                                                         )}
                                                     </div>
@@ -1893,7 +1893,7 @@
                     {activeTab !== 'admin_dashboard' && activeTab !== 'hubungi' && (
                         <button
                             onClick={() => setActiveTab('hubungi')}
-                            className="fixed bottom-24 md:bottom-8 right-6 md:right-8 z-40 bg-navy-900 hover:bg-navy-800 text-gold-400 p-4 rounded-full shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1 flex items-center justify-center animate-fade-in border border-gold-500/20"
+                            className="fixed bottom-28 md:bottom-8 right-6 md:right-8 z-40 bg-navy-900 hover:bg-navy-800 text-gold-400 p-4 rounded-full shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1 flex items-center justify-center animate-fade-in border border-gold-500/20"
                             aria-label="Hubungi Kami"
                             title="Hubungi Kami"
                         >
