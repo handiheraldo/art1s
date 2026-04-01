@@ -360,7 +360,6 @@
                                     {renderItem("Ayat Bersahutan", susunan.kAyatBersahutan)}
                                     {renderItem("Lagu Buka", susunan.kLaguBuka)}
                                     {renderItem("Doa Syafaat", getOfficer(activeSabat.khotbah, "Doa Syafaat"))}
-                                    {susunan.kLaguPujian1_show && renderItem("Lagu Pujian", susunan.kLaguPujian1_judul, true)}
                                     {renderItem("Bacaan Persembahan", getOfficer(activeSabat.khotbah, "Presider"))}
                                     {renderItem("Lagu Persembahan - Special ", susunan.kLaguPujian1_judul || "Judul Lagu Belum Diisi", true)}
                                     {renderItem("Doa Persembahan", getOfficer(activeSabat.khotbah, "Presider"))}
@@ -372,7 +371,6 @@
                                     {renderItem("Khotbah", getOfficer(activeSabat.khotbah, "Khotbah"), true)}
                                     {renderItem("Lagu Tutup", susunan.kLaguTutup)}
                                     {renderItem("Doa Berkat", getOfficer(activeSabat.khotbah, "Khotbah"))}
-                                    {renderItem("Lagu Berkat", "LS 60 - Pada Akhir Kebaktian")}
                                     {renderItem("Pengumuman", "Dept. Komunikasi")}
                                 </div>
                             )}
