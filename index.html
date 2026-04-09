@@ -126,12 +126,12 @@
         }
 
         .pengumuman-text a {
-            color: #2563eb;
+            color: #9c851e;
             text-decoration: underline;
             font-weight: 500;
         }
         .pengumuman-text a:hover {
-            color: #1d4ed8;
+            color: #9c851e;
         }
 
     </style>
@@ -816,7 +816,7 @@ const truncateText = (text, maxLength = 500) => {
             return (
                 <div className="space-y-4 md:space-y-6 animate-fade-in relative z-10">
                     <div className="bg-white p-5 md:p-8 rounded-[1.5rem] shadow-sm border border-navy-100/60">
-                        <div className="flex items-center space-x-3 mb-6 border-b border-navy-50 pb-4"><Icon name="Gift" className="w-[1.4rem] h-[1.4rem] text-gold-500" /><h2 className="text-xl font-bold text-navy-900 tracking-tight">Persembahan, Perpuluhan, Ucapan Syukur, dan Donasi</h2></div>
+                        <div className="flex items-center space-x-3 mb-6 border-b border-navy-50 pb-4"><Icon name="Gift" className="w-[1.5rem] h-[1.5rem] text-gold-500" /><h2 className="text-xl font-bold text-navy-900 tracking-tight">Persembahan, Perpuluhan, Ucapan Syukur, dan Donasi</h2></div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-stretch mb-8">
                             <div className="flex flex-col items-center p-6 bg-navy-50/50 rounded-2xl border border-navy-100/50 h-full justify-center shadow-sm">
                                 <div className="w-40 md:w-48 bg-white border border-navy-100 p-2.5 rounded-xl shadow-sm mb-4"><img src={qrisUrl} alt="QRIS GMAHK PISGAH BISDAC" className="w-full h-auto object-contain rounded-lg" crossOrigin="anonymous" /></div>
@@ -875,7 +875,7 @@ const truncateText = (text, maxLength = 500) => {
         );
 
         const MemberBaru = ({ setActiveTab, dataPejabat }) => {
-            const contacts = dataPejabat.filter(p => ['gembala', 'ketua1', 'ketua2'].includes(p.id));
+            const contacts = dataPejabat.filter(p => ['gembala', 'ketua'].includes(p.id));
             return (
                 <div className="space-y-6 animate-fade-in relative z-10">
                     <button onClick={() => setActiveTab('keanggotaan')} className="text-navy-600 font-bold flex items-center hover:text-gold-600 transition-colors mb-2">&larr; Kembali ke Pilihan Keanggotaan</button>
@@ -891,7 +891,7 @@ const truncateText = (text, maxLength = 500) => {
         };
 
         const PindahMasuk = ({ setActiveTab, dataPejabat }) => {
-            const contacts = dataPejabat.filter(p => ['sekretaris1', 'sekretaris2'].includes(p.id));
+            const contacts = dataPejabat.filter(p => ['sekretaris'].includes(p.id));
             return (
                 <div className="space-y-6 animate-fade-in relative z-10">
                     <button onClick={() => setActiveTab('keanggotaan')} className="text-navy-600 font-bold flex items-center hover:text-gold-600 transition-colors mb-2">&larr; Kembali ke Pilihan Keanggotaan</button>
@@ -1096,8 +1096,8 @@ const truncateText = (text, maxLength = 500) => {
                 <div className="fixed inset-0 z-[100] flex items-center justify-center bg-navy-900/60 px-4 backdrop-blur-md animate-fade-in">
                     <div className="bg-white rounded-[1.5rem] shadow-2xl p-6 md:p-8 max-w-sm w-full relative border border-navy-100/60">
                         <button onClick={onClose} className="absolute top-4 right-4 text-navy-400 hover:text-red-500 transition-colors bg-navy-50 w-8 h-8 rounded-full flex items-center justify-center font-bold pb-1">&times;</button>
-                        <div className="flex justify-center mb-6"><div className="w-16 h-16 bg-navy-50 rounded-full flex items-center justify-center text-gold-500 shadow-inner"><Icon name="Settings" className="w-8 h-8" /></div></div>
-                        <h2 className="text-2xl font-black text-center text-navy-900 mb-2 tracking-tight">Admin Login</h2>
+                        <div className="flex justify-center mb-6"><div className="w-16 h-16 bg-navy-50 rounded-full flex items-center justify-center text-gold-600 shadow-inner"><Icon name="Settings" className="w-8 h-8" /></div></div>
+                        <h2 className="text-xl font-black text-center text-navy-900 mb-2 tracking-tight">Admin Login</h2>
                         <p className="text-sm text-center text-navy-500 mb-8 font-medium">Lakukan otentikasi untuk mengelola jadwal dan data jemaat.</p>
                         <form onSubmit={handleLogin}>
                             <div className="mb-6">
@@ -2799,10 +2799,11 @@ const insertEditWartaFormatting = (tag) => {
 </header>
 
                     <header className="hidden md:block bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-navy-50 shadow-sm">
-                        <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-                            <div className="flex items-center space-x-2">
-                                <img src="./PisgahLogoColor.png" alt="PISGAH-BISDAC Logo" className="h-9 w-auto" />
-                            </div>
+                            <div className="max-w-6xl mx-auto px-6 py-4 flex justify-center items-center gap-6">
+                            {/* area kiri (bisa diisi logo nanti) */}
+                            <img src="./PisgahLogoColor.png" alt="PISGAH-BISDAC Logo" className="h-9 w-auto" />
+                            <div className="flex gap-2"></div>
+                            {/* menu tengah */}
                             <nav className="flex space-x-2">
                                 {tabs.map(tab => {
                                     const isActive = activeTab.startsWith(tab.id);
@@ -2811,11 +2812,13 @@ const insertEditWartaFormatting = (tag) => {
                                     );
                                 })}
                             </nav>
+                            {/* area admin */}
                             {isAdminLoggedIn ? (
                                 <div className="flex items-center space-x-3"><button onClick={() => setActiveTab('admin_dashboard')} className="flex items-center space-x-2 bg-navy-50 text-navy-900 px-5 py-2.5 rounded-full text-sm font-bold hover:bg-navy-200 transition"><Icon name="Settings" className="w-[1.15rem] h-[1.15rem]" /><span>Dashboard</span></button><button onClick={handleLogout} className="flex items-center justify-center bg-red-50 text-red-600 p-2.5 rounded-full hover:bg-red-100 transition"><Icon name="LogOut" className="w-4 h-4" /></button></div>
                             ) : (
-                                <button onClick={handleAdminClick} className="flex items-center space-x-2 bg-gold-400 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-gold-600 hover:shadow-md transition-all duration-300"><Icon name="LogIn" className="w-[1.15rem] h-[1.15rem]" /><span>Admin Login</span></button>
+                                <button onClick={handleAdminClick} className="flex items-center space-x-2 bg-gold-400 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-gold-600 hover:shadow-md transition-all duration-300"><Icon name="LogIn" className="w-[1.15rem] h-[1.15rem]" /><span></span></button>
                             )}
+
                         </div>
                     </header>
 
