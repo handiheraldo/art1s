@@ -111,6 +111,29 @@
             color: #0b1a30;
         }
 
+        .pengumuman-text i, .pengumuman-text em {
+            font-weight: 800 !important;
+            color: #0b1a30;
+        }
+
+        .warta-content b, .warta-content strong {
+            font-weight: 800 !important;
+            color: #0b1a30;
+        }
+        .warta-content i, .warta-content em {
+            font-style: italic !important;
+            color: #0b1a30;
+        }
+
+        .pengumuman-text a {
+            color: #2563eb;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+        .pengumuman-text a:hover {
+            color: #1d4ed8;
+        }
+
     </style>
 </head>
 
@@ -121,7 +144,21 @@
         // ========================================================
         // URL WEB APP MILIKMU
         // ========================================================
-        const GAS_API_URL = "https://script.google.com/macros/s/AKfycbwVPmot0CUM39NA45QZR_4goadwSypnsMoHbziXj-ZGHNd6AF0cr7UpeTX6HhYmwl_U/exec";
+        const GAS_API_URL = "https://script.google.com/macros/s/AKfycbykhljKHJHVf9DsGtxUxWkD5BMAffI1j01P3-HmxzSwYRg9jdWWvxn8ifwPmN6TrhU6/exec";
+
+        // ========== HELPER UNTUK WARTA PANJANG ==========
+const stripHtml = (html) => {
+  if (!html) return '';
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html;
+  return tmp.textContent || tmp.innerText || '';
+};
+
+const truncateText = (text, maxLength = 500) => {
+  if (text.length <= maxLength) return text;
+  return text.substring(0, maxLength) + '...';
+};
+// ================================================
 
         // --- HELPER UNTUK MENGUBAH HTML ENTITIES DARI SPREADSHEET ---
         const decodeHTML = (htmlStr) => {
@@ -451,7 +488,7 @@
 
         const Belajar = ({ setActiveTab }) => {
             const items = [
-                { id: 'sekolah_sabat', title: 'Sekolah Sabat', desc: 'Akses pelajaran harian Sekolah Sabat secara online untuk pedalaman rohani Anda.', img: 'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/ecfa0085-8c09-46ef-97df-6be05cd44019/1000129545/w=800,quality=80,fit=scale-down', color: 'blue', isExternal: true, link: 'https://sabbath-school.adventech.io/in' },
+                { id: 'sekolah_sabat', title: 'Sekolah Sabat', desc: 'Akses pelajaran harian Sekolah Sabat secara online untuk pedalaman rohani Anda.', img: 'https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/ecfa0085-8c09-46ef-97df-6be05cd44019/1000129545/w=800,quality=80,fit=scale-down', color: 'navy', isExternal: true, link: 'https://sabbath-school.adventech.io/in' },
                 { id: 'alkitab', title: 'Alkitab', desc: 'Alkitab adalah firman Allah yang diilhamkan, satu-satunya aturan iman dan praktik.', img: 'https://images.hopesoftware.org/resize/L3c6MTkyMCxxOjgwL2hvcGUtaW1hZ2VzLzY3MDU0MDEzYTYwOTE5YzkyZDkyYzk1OS9DZnExNzQ5MTg3MDg1NjE3LmpwZw/w:1920,q:80/hope-images/67054013a60919c92d92c959/Cfq1749187085617.jpg', color: 'orange' },
                 { id: '28dasar', title: '28 Dasar Kepercayaan', desc: 'Gereja Advent memegang keyakinan dasar tertentu sebagai ajaran Kitab Suci.', img: 'https://images.hopesoftware.org/resize/L3c6MTkyMCxxOjc1L2hvcGUtaW1hZ2VzLzY3MDU0MDEzYTYwOTE5YzkyZDkyYzk1OS9mcEUxNzQ5NDcxNDI3NTExLmpwZw/w:1920,q:75/hope-images/67054013a60919c92d92c959/fpE1749471427511.jpg', color: 'green' },
                 { id: 'egw', title: 'Ellen G. White', desc: 'Mengenal tulisan-tulisan yang diilhami untuk menuntun gereja pada akhir zaman.', img: 'https://images.hopesoftware.org/resize/L3c6MTkyMCxxOjgwL2hvcGUtaW1hZ2VzLzY3MDU0MDEzYTYwOTE5YzkyZDkyYzk1OS9ISVMxNzQ3NzM1NjEyMzE5LmpwZw/w:1920,q:80/hope-images/67054013a60919c92d92c959/HIS1747735612319.jpg', color: 'purple' }
@@ -600,7 +637,7 @@
                     {items.map((p, i) => (
                         <div key={i} className="flex justify-between items-center px-3 py-2 border-b border-purple-50 last:border-0 hover:bg-purple-50/50 transition">
                             <span className="text-xs text-purple-600 font-semibold w-1/2">{p.tugas}</span>
-                            <span className="text-sm font-bold text-gray-800 text-right w-1/2">{p.nama}</span>
+                            <span className="text-sm font-bold text-navy-800 text-right w-1/2">{p.nama}</span>
                         </div>
                     ))}
                 </div>
@@ -748,7 +785,7 @@
                                 </div>
                             </div>
                         )}
-                        <button onClick={() => setActiveTab('jadwal')} className="sm:hidden w-full mt-4 flex justify-center items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition bg-blue-50 hover:bg-blue-100 px-4 py-3 rounded-lg">Lihat Semua Jadwal &rarr;</button>
+                        <button onClick={() => setActiveTab('jadwal')} className="sm:hidden w-full mt-4 flex justify-center items-center text-sm font-medium text-navy-600 hover:text-navy-800 transition bg-navy-50 hover:bg-navy-100 px-4 py-3 rounded-lg">Lihat Semua Jadwal &rarr;</button>
                     </div>
                     
                     {showPerjamuan && !isRabu && (
@@ -805,11 +842,11 @@
                                 <h3 className="font-bold text-navy-900 text-sm mb-1.5 flex items-center"><span className="bg-navy-900/10 text-navy-800 w-5 h-5 rounded-full inline-flex items-center justify-center text-xs mr-2 font-bold">2</span>Sertakan Keterangan</h3>
                                 <p className="text-xs text-navy-600 mb-4 pl-7 font-medium">Sebutkan rincian nominal persembahan Anda pada chat WhatsApp:</p>
                                 <div className="flex flex-wrap gap-2 pl-0 md:pl-7">
-                                    {['Perpuluhan', 'Persembahan Terpadu', 'Persembahan Khusus', 'Persembahan Syukur', 'Donasi Kas Gereja', 'Donasi Kas Departemen', 'Lain-lain'].map((item, i) => { const colors = ['bg-gold-500', 'bg-navy-500', 'bg-red-500', 'bg-green-500', 'bg-purple-500', 'bg-teal-500', 'bg-gray-500']; return (<span key={i} className="flex items-center bg-white border border-navy-100 px-3 py-1.5 rounded-full text-[10px] md:text-xs font-bold text-navy-700 shadow-sm"><span className={`w-1.5 h-1.5 rounded-full ${colors[i]} mr-2`}></span>{item}</span>); })}
+                                    {['Perpuluhan', 'Persembahan Terpadu', 'Persembahan Khusus', 'Persembahan Syukur', 'Donasi Kas Gereja', 'Donasi Kas Departemen', 'Lain-lain'].map((item, i) => { const colors = ['bg-gold-500', 'bg-navy-500', 'bg-red-500', 'bg-green-500', 'bg-purple-500', 'bg-teal-500', 'bg-navy-500']; return (<span key={i} className="flex items-center bg-white border border-navy-100 px-3 py-1.5 rounded-full text-[10px] md:text-xs font-bold text-navy-700 shadow-sm"><span className={`w-1.5 h-1.5 rounded-full ${colors[i]} mr-2`}></span>{item}</span>); })}
                                 </div>
                             </div>
                             <div>
-                                <h3 className="font-bold text-navy-900 text-sm mb-1.5 flex items-center"><span className="bg-blue-400/20 text-blue-600 w-5 h-5 rounded-full inline-flex items-center justify-center text-xs mr-2 font-bold">3</span>Ada 2 waktu pengumpulan persembahan</h3>
+                                <h3 className="font-bold text-navy-900 text-sm mb-1.5 flex items-center"><span className="bg-navy-400/20 text-navy-600 w-5 h-5 rounded-full inline-flex items-center justify-center text-xs mr-2 font-bold">3</span>Ada 2 waktu pengumpulan persembahan</h3>
                                 <p className="text-xs text-navy-600 mb-4 pl-7 font-medium">1. Pada Saat Jam Khotbah (Persembahan)</p>
                                 <p className="text-xs text-navy-600 mb-4 pl-7 font-medium">2. Pada Saat Lagu Tutup Jam Khotbah (Pembangunan)</p>
                                 <div className="flex flex-wrap gap-2 pl-0 md:pl-7">
@@ -958,7 +995,7 @@
                         <div className="bg-navy-100/50 shadow-inner overflow-x-auto border border-navy-200 rounded-[1.5rem] p-4 sm:p-8 relative">
                             <div className="absolute top-4 right-4 text-xs font-bold text-navy-400 uppercase tracking-widest bg-white/50 px-3 py-1 rounded-full backdrop-blur-sm z-10 pointer-events-none">Preview Saja</div>
                             <div className="w-max mx-auto shadow-xl bg-white relative rounded overflow-hidden">
-                                <div id="pdf-content" className="p-10 bg-white text-black text-sm relative" style={{ width: '210mm', minHeight: '297mm', fontFamily: '"Open Sans", sans-serif', boxSizing: 'border-box' }}><p className="text-[10px] text-gray-500 absolute top-4 right-10 leading-none">Form ACMS-03</p><div className="flex justify-between items-center mb-10 mt-6"><div className="w-[180px] flex justify-start"><img src="https://i.postimg.cc/dQhq2HGf/png-acms-new-logo.png" alt="ACMS Logo" crossOrigin="anonymous" className="h-[60px] object-contain block" /></div><div className="flex-1 text-center px-4"><h2 className="font-bold text-[16px] leading-tight">PERMOHONAN PERPINDAHAN ANGGOTA</h2><h2 className="font-bold text-[16px] leading-tight mt-1">GMAHK KONFERENS JAWA KAWASAN TIMUR</h2><h2 className="font-bold text-[16px] leading-tight mt-1">JEMAAT PISGAH BISDAC</h2></div><div className="w-[180px] flex flex-col items-center"><div className="border border-black bg-[#dce6f1] font-bold py-1 w-full text-center text-[12px]">DIISI OLEH PEMOHON</div><p className="italic text-center mt-1 text-[12px] leading-snug">Bagi Pemohon yang namanya <br /><span className="font-bold not-italic">SUDAH</span> ada di ACMS</p></div></div><div className="mb-6"><p className="font-bold mb-2">A. PROFIL PEMOHON <span className="font-normal text-[11px]">(Mohon diisi sesuai dengan KTP/Akte Kelahiran / identitas lainnya menggunakan huruf besar)</span></p><table className="w-full ml-4" style={{ borderCollapse: 'separate', borderSpacing: '0 4px' }}><tbody><tr><td className="w-1/4 py-1 align-top">1. Nama Lengkap</td><td className="w-3/4 py-1 align-top">: <span className="uppercase">{formData.namaLengkap}</span></td></tr><tr><td className="w-1/4 py-1 align-top">2. Jenis Kelamin</td><td className="w-3/4 py-1 align-top">: {formData.jenisKelamin}</td></tr><tr><td className="w-1/4 py-1 align-top">3. Tanggal Lahir</td><td className="w-3/4 py-1 align-top">: {formatDate(formData.tanggalLahir)}</td></tr><tr><td className="w-1/4 py-1 align-top">4. Nama Ibu</td><td className="w-3/4 py-1 align-top">: <span className="uppercase">{formData.namaIbu}</span></td></tr><tr><td className="w-1/4 py-1 align-top">5. Baptisan</td><td className="w-3/4 py-1"></td></tr><tr><td className="w-1/4 py-1 pl-4 align-top">- tanggal</td><td className="w-3/4 py-1 align-top">: {formatDate(formData.baptisanTanggal)}</td></tr><tr><td className="w-1/4 py-1 pl-4 align-top">- tempat</td><td className="w-3/4 py-1 align-top">: <span className="uppercase">{formData.baptisanTempat}</span></td></tr><tr><td className="w-1/4 py-1 pl-4 align-top">- pendeta</td><td className="w-3/4 py-1 align-top">: <span className="uppercase">{formData.baptisanPendeta}</span></td></tr></tbody></table></div><div className="mb-8"><p className="font-bold mb-2">B. PERNYATAAN PEMOHON</p><table className="w-full ml-4 mb-4" style={{ borderCollapse: 'separate', borderSpacing: '0 4px' }}><tbody><tr><td className="w-[80%] py-1 align-top">1. Apakah Anda dalam masa disiplin Gereja?</td><td className="w-[20%] py-1 font-bold align-top">: {formData.masaDisiplin}</td></tr><tr><td className="w-[80%] py-1 align-top">2. Apakah Anda sudah pernah mengajukan permohonan perpindahan keanggotaan?</td><td className="w-[20%] py-1 font-bold align-top">: {formData.pernahPindah}</td></tr></tbody></table><p className="mb-2">Dengan ini saya memohon agar memindahkan keanggotaan saya dari:</p><table className="w-full ml-4 mb-4" style={{ borderCollapse: 'separate', borderSpacing: '0 4px' }}><tbody><tr><td className="w-1/4 py-1 align-top">1. Nama Jemaat Asal</td><td className="w-3/4 py-1 align-top">: <span className="uppercase">{formData.jemaatAsalNama}</span></td></tr><tr><td className="w-1/4 py-1 align-top">2. Alamat Jemaat Asal</td><td className="w-3/4 py-1 align-top">: {formData.jemaatAsalAlamat}</td></tr><tr><td className="w-1/4 py-1 align-top">3. Nama Sekretaris</td><td className="w-3/4 py-1 align-top">: <span className="uppercase">{formData.jemaatAsalSekretaris}</span></td></tr><tr><td className="w-1/4 py-1 align-top">4. Telp/Email Aktif</td><td className="w-3/4 py-1 align-top">: {formData.jemaatAsalKontak}</td></tr></tbody></table><p className="mb-6">Demikian permohonan ini saya ajukan tanpa ada paksaan dari pihak manapun.</p><div className="flex justify-end pr-10"><div className="text-center w-64"><p>Tempat/Tanggal diajukan:</p><p className="mb-14">Surabaya, {formatDate(new Date())}</p><p className="border-t border-black pt-1 uppercase leading-none">( {formData.namaLengkap || '..........................'} )</p><p className="text-[11px] mt-1">Nama dan Tanda Tangan Pemohon</p></div></div></div><div className="mb-6 mt-10 pt-6 border-t-[1.5px] border-dashed border-gray-400"><p className="font-bold text-center mb-5 tracking-wide text-[13px]">DIISI OLEH SEKRETARIS JEMAAT</p><p className="font-bold mb-2 text-[13px]">C. DATA KEPUTUSAN MAJELIS</p><table className="w-full ml-4" style={{ borderCollapse: 'separate', borderSpacing: '0 6px' }}><tbody><tr><td className="w-[40%] py-1.5 align-bottom">1. Keputusan Majelis Tanggal</td><td className="w-[60%] py-1.5 border-b border-dotted border-gray-500 align-bottom">: </td></tr><tr><td className="w-[40%] py-1.5 align-bottom"> Nomor Keputusan</td><td className="w-[60%] py-1.5 border-b border-dotted border-gray-500 align-bottom">: </td></tr><tr><td className="w-[40%] py-1.5 align-bottom">2. Di proses tanggal</td><td className="w-[60%] py-1.5 border-b border-dotted border-gray-500 align-bottom">: </td></tr><tr><td className="w-[40%] py-1.5 align-bottom">3. Ketua Jemaat</td><td className="w-[60%] py-1.5 border-b border-dotted border-gray-500 align-bottom">: </td></tr><tr><td className="w-[40%] py-1.5 align-bottom">4. Gembala Jemaat</td><td className="w-[60%] py-1.5 border-b border-dotted border-gray-500 align-bottom">: </td></tr></tbody></table><div className="flex justify-end pr-10 mt-8"><div className="text-center w-64"><p className="mb-14">20........</p><p className="border-t border-black pt-1 leading-none">( ........................................ )</p><p className="text-[11px] mt-1">Nama dan Tanda Tangan Sekretaris Jemaat</p></div></div></div><div className="mt-8 pt-4 border-t border-gray-200 flex justify-between items-center text-[10px] text-gray-400 font-sans"><p>ACMS v.3.03</p><p>&copy; Copyright by PISGAH-BISDAC Team 2026</p></div></div>
+                                <div id="pdf-content" className="p-10 bg-white text-black text-sm relative" style={{ width: '210mm', minHeight: '297mm', fontFamily: '"Open Sans", sans-serif', boxSizing: 'border-box' }}><p className="text-[10px] text-navy-500 absolute top-4 right-10 leading-none">Form ACMS-03</p><div className="flex justify-between items-center mb-10 mt-6"><div className="w-[180px] flex justify-start"><img src="https://i.postimg.cc/dQhq2HGf/png-acms-new-logo.png" alt="ACMS Logo" crossOrigin="anonymous" className="h-[60px] object-contain block" /></div><div className="flex-1 text-center px-4"><h2 className="font-bold text-[16px] leading-tight">PERMOHONAN PERPINDAHAN ANGGOTA</h2><h2 className="font-bold text-[16px] leading-tight mt-1">GMAHK KONFERENS JAWA KAWASAN TIMUR</h2><h2 className="font-bold text-[16px] leading-tight mt-1">JEMAAT PISGAH BISDAC</h2></div><div className="w-[180px] flex flex-col items-center"><div className="border border-black bg-[#dce6f1] font-bold py-1 w-full text-center text-[12px]">DIISI OLEH PEMOHON</div><p className="italic text-center mt-1 text-[12px] leading-snug">Bagi Pemohon yang namanya <br /><span className="font-bold not-italic">SUDAH</span> ada di ACMS</p></div></div><div className="mb-6"><p className="font-bold mb-2">A. PROFIL PEMOHON <span className="font-normal text-[11px]">(Mohon diisi sesuai dengan KTP/Akte Kelahiran / identitas lainnya menggunakan huruf besar)</span></p><table className="w-full ml-4" style={{ borderCollapse: 'separate', borderSpacing: '0 4px' }}><tbody><tr><td className="w-1/4 py-1 align-top">1. Nama Lengkap</td><td className="w-3/4 py-1 align-top">: <span className="uppercase">{formData.namaLengkap}</span></td></tr><tr><td className="w-1/4 py-1 align-top">2. Jenis Kelamin</td><td className="w-3/4 py-1 align-top">: {formData.jenisKelamin}</td></tr><tr><td className="w-1/4 py-1 align-top">3. Tanggal Lahir</td><td className="w-3/4 py-1 align-top">: {formatDate(formData.tanggalLahir)}</td></tr><tr><td className="w-1/4 py-1 align-top">4. Nama Ibu</td><td className="w-3/4 py-1 align-top">: <span className="uppercase">{formData.namaIbu}</span></td></tr><tr><td className="w-1/4 py-1 align-top">5. Baptisan</td><td className="w-3/4 py-1"></td></tr><tr><td className="w-1/4 py-1 pl-4 align-top">- tanggal</td><td className="w-3/4 py-1 align-top">: {formatDate(formData.baptisanTanggal)}</td></tr><tr><td className="w-1/4 py-1 pl-4 align-top">- tempat</td><td className="w-3/4 py-1 align-top">: <span className="uppercase">{formData.baptisanTempat}</span></td></tr><tr><td className="w-1/4 py-1 pl-4 align-top">- pendeta</td><td className="w-3/4 py-1 align-top">: <span className="uppercase">{formData.baptisanPendeta}</span></td></tr></tbody></table></div><div className="mb-8"><p className="font-bold mb-2">B. PERNYATAAN PEMOHON</p><table className="w-full ml-4 mb-4" style={{ borderCollapse: 'separate', borderSpacing: '0 4px' }}><tbody><tr><td className="w-[80%] py-1 align-top">1. Apakah Anda dalam masa disiplin Gereja?</td><td className="w-[20%] py-1 font-bold align-top">: {formData.masaDisiplin}</td></tr><tr><td className="w-[80%] py-1 align-top">2. Apakah Anda sudah pernah mengajukan permohonan perpindahan keanggotaan?</td><td className="w-[20%] py-1 font-bold align-top">: {formData.pernahPindah}</td></tr></tbody></table><p className="mb-2">Dengan ini saya memohon agar memindahkan keanggotaan saya dari:</p><table className="w-full ml-4 mb-4" style={{ borderCollapse: 'separate', borderSpacing: '0 4px' }}><tbody><tr><td className="w-1/4 py-1 align-top">1. Nama Jemaat Asal</td><td className="w-3/4 py-1 align-top">: <span className="uppercase">{formData.jemaatAsalNama}</span></td></tr><tr><td className="w-1/4 py-1 align-top">2. Alamat Jemaat Asal</td><td className="w-3/4 py-1 align-top">: {formData.jemaatAsalAlamat}</td></tr><tr><td className="w-1/4 py-1 align-top">3. Nama Sekretaris</td><td className="w-3/4 py-1 align-top">: <span className="uppercase">{formData.jemaatAsalSekretaris}</span></td></tr><tr><td className="w-1/4 py-1 align-top">4. Telp/Email Aktif</td><td className="w-3/4 py-1 align-top">: {formData.jemaatAsalKontak}</td></tr></tbody></table><p className="mb-6">Demikian permohonan ini saya ajukan tanpa ada paksaan dari pihak manapun.</p><div className="flex justify-end pr-10"><div className="text-center w-64"><p>Tempat/Tanggal diajukan:</p><p className="mb-14">Surabaya, {formatDate(new Date())}</p><p className="border-t border-black pt-1 uppercase leading-none">( {formData.namaLengkap || '..........................'} )</p><p className="text-[11px] mt-1">Nama dan Tanda Tangan Pemohon</p></div></div></div><div className="mb-6 mt-10 pt-6 border-t-[1.5px] border-dashed border-navy-400"><p className="font-bold text-center mb-5 tracking-wide text-[13px]">DIISI OLEH SEKRETARIS JEMAAT</p><p className="font-bold mb-2 text-[13px]">C. DATA KEPUTUSAN MAJELIS</p><table className="w-full ml-4" style={{ borderCollapse: 'separate', borderSpacing: '0 6px' }}><tbody><tr><td className="w-[40%] py-1.5 align-bottom">1. Keputusan Majelis Tanggal</td><td className="w-[60%] py-1.5 border-b border-dotted border-navy-500 align-bottom">: </td></tr><tr><td className="w-[40%] py-1.5 align-bottom"> Nomor Keputusan</td><td className="w-[60%] py-1.5 border-b border-dotted border-navy-500 align-bottom">: </td></tr><tr><td className="w-[40%] py-1.5 align-bottom">2. Di proses tanggal</td><td className="w-[60%] py-1.5 border-b border-dotted border-navy-500 align-bottom">: </td></tr><tr><td className="w-[40%] py-1.5 align-bottom">3. Ketua Jemaat</td><td className="w-[60%] py-1.5 border-b border-dotted border-navy-500 align-bottom">: </td></tr><tr><td className="w-[40%] py-1.5 align-bottom">4. Gembala Jemaat</td><td className="w-[60%] py-1.5 border-b border-dotted border-navy-500 align-bottom">: </td></tr></tbody></table><div className="flex justify-end pr-10 mt-8"><div className="text-center w-64"><p className="mb-14">20........</p><p className="border-t border-black pt-1 leading-none">( ........................................ )</p><p className="text-[11px] mt-1">Nama dan Tanda Tangan Sekretaris Jemaat</p></div></div></div><div className="mt-8 pt-4 border-t border-navy-200 flex justify-between items-center text-[10px] text-navy-400 font-sans"><p>ACMS v.3.03</p><p>&copy; Copyright by PISGAH-BISDAC Team 2026</p></div></div>
                             </div>
                         </div>
                     </div>
@@ -1004,12 +1041,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div className="opacity-50 pointer-events-none grayscale bg-gray-50 p-4 rounded-xl border border-gray-200">
-                                <h3 className="font-bold text-gray-800 border-b pb-1 mb-3">C. DATA Keputusan MAJELIS <span className="text-red-600 text-[10px] ml-2 font-bold bg-red-100 px-2 py-0.5 rounded uppercase tracking-wider">(Hanya diisi oleh Sekretaris Jemaat)</span></h3>
+                            <div className="opacity-50 pointer-events-none navyscale bg-navy-50 p-4 rounded-xl border border-navy-200">
+                                <h3 className="font-bold text-navy-800 border-b pb-1 mb-3">C. DATA Keputusan MAJELIS <span className="text-red-600 text-[10px] ml-2 font-bold bg-red-100 px-2 py-0.5 rounded uppercase tracking-wider">(Hanya diisi oleh Sekretaris Jemaat)</span></h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div><label className="block text-xs text-gray-600 mb-1">Keputusan Majelis Tanggal</label><input type="text" disabled className="w-full p-2 border border-gray-300 rounded bg-gray-200" /></div>
-                                    <div><label className="block text-xs text-gray-600 mb-1">Nomor Keputusan</label><input type="text" disabled className="w-full p-2 border border-gray-300 rounded bg-gray-200" /></div>
-                                    <div className="md:col-span-2"><label className="block text-xs text-gray-600 mb-1">Diproses Tanggal</label><input type="text" disabled className="w-full p-2 border border-gray-300 rounded bg-gray-200" /></div>
+                                    <div><label className="block text-xs text-navy-600 mb-1">Keputusan Majelis Tanggal</label><input type="text" disabled className="w-full p-2 border border-navy-300 rounded bg-navy-200" /></div>
+                                    <div><label className="block text-xs text-navy-600 mb-1">Nomor Keputusan</label><input type="text" disabled className="w-full p-2 border border-navy-300 rounded bg-navy-200" /></div>
+                                    <div className="md:col-span-2"><label className="block text-xs text-navy-600 mb-1">Diproses Tanggal</label><input type="text" disabled className="w-full p-2 border border-navy-300 rounded bg-navy-200" /></div>
                                 </div>
                             </div>
                             <button type="submit" className="w-full bg-navy-900 hover:bg-navy-800 text-gold-400 font-bold py-4 rounded-xl transition mt-8 text-lg flex justify-center items-center shadow-lg hover:shadow-xl"><span className="mr-3">Lanjut Preview Formulir</span> <Icon name="ChevronRight" className="w-5 h-5 bg-navy-800 rounded-full" /></button>
@@ -1085,35 +1122,152 @@
         };
 
         const WartaPage = ({ daftarWarta, setActiveTab }) => {
-    // Urutkan dari tanggal terbaru ke terlama
-    const sortedWarta = React.useMemo(() => {
-      return [...daftarWarta].sort((a, b) => new Date(b.tanggal) - new Date(a.tanggal));
-    }, [daftarWarta]);
+  const [imageSizes, setImageSizes] = React.useState({});
+  const [imageErrors, setImageErrors] = React.useState({});
+  const [expandedWarta, setExpandedWarta] = React.useState({});
 
-    return (
-        <div className="space-y-6 animate-fade-in">
-        <div className="bg-white rounded-[1.5rem] p-6 shadow-sm border border-navy-100/60">
-            {sortedWarta.length === 0 ? (
-            <p className="text-gray-500">Belum ada warta.</p>
-            ) : ( 
-            <div className="space-y-6">
-                {sortedWarta.map((warta, idx) => (
+  const handleImageSizeChange = (idx, value) => {
+    setImageSizes(prev => ({ ...prev, [idx]: value }));
+  };
+
+  const handleImageError = (idx, url) => {
+    console.warn(`Gambar gagal dimuat: ${url}`);
+    setImageErrors(prev => ({ ...prev, [idx]: true }));
+  };
+
+  const toggleExpand = (idx) => {
+    setExpandedWarta(prev => ({ ...prev, [idx]: !prev[idx] }));
+  };
+
+  const sortedWarta = React.useMemo(() => {
+    return [...daftarWarta].sort((a, b) => new Date(b.tanggal) - new Date(a.tanggal));
+  }, [daftarWarta]);
+
+  // Batas karakter (150)
+  const CHAR_LIMIT = 150;
+
+  return (
+    <div className="space-y-6 animate-fade-in">
+      <button onClick={() => setActiveTab('home')} className="text-navy-600 font-bold flex items-center hover:text-gold-600 transition-colors mb-2">
+        &larr; Kembali ke Home
+      </button>
+      <div className="bg-white rounded-[1.5rem] p-6 shadow-sm border border-navy-100/60">
+        <h2 className="text-2xl font-bold mb-4 text-navy-900">Warta Gereja</h2>
+        {sortedWarta.length === 0 ? (
+          <p className="text-navy-500">Belum ada warta.</p>
+        ) : (
+          <div className="space-y-6">
+            {sortedWarta.map((warta, idx) => {
+              const imageWidth = imageSizes[idx] ?? 100;
+              const hasError = imageErrors[idx];
+              const isValid = warta.gambarUrl && warta.gambarUrl.startsWith('http');
+              
+              // Hitung panjang teks sebenarnya (tanpa tag HTML)
+              const plainText = stripHtml(warta.isi);
+              const isLong = plainText.length > CHAR_LIMIT;
+              const isExpanded = expandedWarta[idx] || false;
+
+              // Konten yang akan ditampilkan
+              let contentToShow = '';
+              if (!isLong || isExpanded) {
+                contentToShow = warta.isi; // full HTML
+              } else {
+                // ringkasan teks polos + potongan
+                const truncated = truncateText(plainText, 500);
+                contentToShow = truncated; // teks polos (tanpa HTML)
+              }
+
+              return (
                 <div key={idx} className="border-b border-navy-100 pb-4 last:border-0">
+                  <center>
                     <h3 className="font-bold text-lg text-navy-800">{warta.judul}</h3>
-                    <p className="text-sm text-gray-500">{warta.tanggal}</p>
-                    {warta.gambarUrl && <img src={warta.gambarUrl} className="max-w-full h-auto my-2 rounded-lg shadow-sm" alt="Gambar warta" />}
-                    <p className="mt-2 whitespace-pre-wrap text-navy-700">{warta.isi}</p>
+                    <div className="flex flex-col items-center mt-1">
+                      <p className="text-sm text-navy-500">{warta.tanggal}</p>
+                      <p className="text-xs text-navy-400 mt-1">oleh: {warta.penulis}</p>
+                    </div>
+                  </center>
+                  {isValid && (
+                    <div className="my-2">
+                      <div className="flex items-center justify-center gap-2 mb-1">
+                        <label className="text-xs text-navy-500">Ukuran gambar:</label>
+                        <input
+                          type="range"
+                          min="30"
+                          max="100"
+                          value={imageWidth}
+                          onChange={(e) => handleImageSizeChange(idx, parseInt(e.target.value))}
+                          className="w-32 h-1 bg-navy-200 rounded-lg appearance-none cursor-pointer"
+                        />
+                        <span className="text-xs text-navy-500 w-10">{imageWidth}%</span>
+                      </div>
+                      <center>
+                        {!hasError ? (
+                          <img
+                            src={warta.gambarUrl}
+                            className="h-auto rounded-lg shadow-sm"
+                            style={{ width: `${imageWidth}%` }}
+                            alt="Gambar warta"
+                            onError={() => handleImageError(idx, warta.gambarUrl)}
+                            referrerPolicy="no-referrer"
+                          />
+                        ) : (
+                          <div className="text-red-500 text-sm p-4 bg-red-50 rounded-lg">
+                            ❌ Gambar gagal dimuat. 
+                            <button 
+                              onClick={() => setImageErrors(prev => ({ ...prev, [idx]: false }))}
+                              className="ml-2 text-blue-600 underline"
+                            >
+                              Coba lagi
+                            </button>
+                          </div>
+                        )}
+                      </center>
+                    </div>
+                  )}
+                  {!isValid && warta.gambarUrl && (
+                    <div className="my-2 text-center text-yellow-600 text-sm">
+                      ⚠️ Format URL gambar tidak valid. Silakan edit warta dan upload ulang gambar.
+                    </div>
+                  )}
+                  
+                  {/* Tampilkan isi warta */}
+                  <div className="text-justify text-sm mt-2 whitespace-pre-wrap text-navy-700 warta-content">
+                    {isLong && !isExpanded ? (
+                      // Teks polos yang dipotong
+                      <span>{contentToShow}</span>
+                    ) : (
+                      // HTML penuh
+                      <div dangerouslySetInnerHTML={{ __html: contentToShow }} />
+                    )}
+                  </div>
+
+                  {/* Tombol jika panjang > batas */}
+                  {isLong && (
+                    <div className="text-center mt-2">
+                      <button
+                        onClick={() => toggleExpand(idx)}
+                        className={`w-full py-3.5 rounded-xl font-bold transition-all duration-300 flex items-center justify-center space-x-2 bg-navy-50 hover:bg-navy-100 text-navy-800`}
+                        >
+                        {isExpanded ? 'Tutup' : 'Baca selengkapnya'}
+                      </button>
+                    </div>
+                  )}
                 </div>
-                ))}
-            </div>
-            )}
-        </div>
-        </div>
-    );
-    };
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
         // --- KOMPONEN AdminDashboard yang DIPERBAIKI (dengan fitur warta) ---
-            const AdminDashboard = ({ dataPejabat, setDataPejabat, jadwalDB, setJadwalDB, adminToken, setAdminToken, youtubeUrl, setYoutubeUrl, kategoriPejabat, setKategoriPejabat, pengumuman, setPengumuman, refreshWarta }) => {
+            const AdminDashboard = ({ 
+            dataPejabat, setDataPejabat, jadwalDB, setJadwalDB, adminToken, setAdminToken,
+            youtubeUrl, setYoutubeUrl, kategoriPejabat, setKategoriPejabat,
+            pengumuman, setPengumuman, daftarWarta, setDaftarWarta, refreshWarta 
+            }) => {
             const [adminTab, setAdminTab] = React.useState('pengaturan'); // jadwal, pelayan, warta, pengaturan
 
             // State Ganti Password
@@ -1131,12 +1285,130 @@
             const [editPengumuman, setEditPengumuman] = React.useState(pengumuman);
             const [isSavingPengumuman, setIsSavingPengumuman] = React.useState(false);
             const textareaRef = React.useRef(null);
+            const [linkModalOpenPengumuman, setLinkModalOpenPengumuman] = React.useState(false);
+            const [linkUrlPengumuman, setLinkUrlPengumuman] = React.useState('');
+            const [linkTextPengumuman, setLinkTextPengumuman] = React.useState('');
 
             // State Warta (form)
+            const [editingWarta, setEditingWarta] = React.useState(null); // { rowIndex, judul, isi, gambarUrl }
+            const [editWartaModal, setEditWartaModal] = React.useState(false);
+            const [editWartaJudul, setEditWartaJudul] = React.useState('');
+            const [editWartaIsi, setEditWartaIsi] = React.useState('');
+            const [editWartaGambar, setEditWartaGambar] = React.useState(null);
+            const [isUpdatingWarta, setIsUpdatingWarta] = React.useState(false);
+
             const [wartaJudul, setWartaJudul] = React.useState('');
             const [wartaIsi, setWartaIsi] = React.useState('');
             const [wartaGambar, setWartaGambar] = React.useState(null);
             const [isSavingWarta, setIsSavingWarta] = React.useState(false);
+            const [wartaPenulis, setWartaPenulis] = React.useState('');
+            const [editWartaPenulis, setEditWartaPenulis] = React.useState('');
+            const [wartaIsiHtml, setWartaIsiHtml] = React.useState('');
+            const wartaTextareaRef = React.useRef(null);
+            const editWartaTextareaRef = React.useRef(null);
+
+            const [linkModalOpen, setLinkModalOpen] = React.useState(false);
+            const [linkUrl, setLinkUrl] = React.useState('');
+            const [linkText, setLinkText] = React.useState('');
+            const [currentLinkEditor, setCurrentLinkEditor] = React.useState(null); // 'warta' atau 'editWarta'
+
+            // Fungsi menangani pembuatan link warta
+            const openLinkModal = (editorType) => {
+    const textarea = editorType === 'warta' ? wartaTextareaRef.current : editWartaTextareaRef.current;
+    if (!textarea) return;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const selectedText = textarea.value.substring(start, end);
+    if (!selectedText) {
+        alert("Pilih teks terlebih dahulu untuk dijadikan link.");
+        return;
+    }
+    setLinkText(selectedText);
+    setLinkUrl('');
+    setCurrentLinkEditor(editorType);
+    setLinkModalOpen(true);
+};
+
+const insertLink = () => {
+    if (!linkUrl) {
+        alert("URL tidak boleh kosong.");
+        return;
+    }
+    let url = linkUrl;
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        url = 'https://' + url;
+    }
+    const tag = `<a href="${url}" target="_blank" rel="noopener noreferrer">${linkText}</a>`;
+    
+    if (currentLinkEditor === 'warta') {
+        const textarea = wartaTextareaRef.current;
+        if (!textarea) return;
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const newText = wartaIsi.substring(0, start) + tag + wartaIsi.substring(end);
+        setWartaIsi(newText);
+        setTimeout(() => {
+            textarea.focus();
+            textarea.setSelectionRange(start + tag.length, start + tag.length);
+        }, 0);
+    } else if (currentLinkEditor === 'editWarta') {
+        const textarea = editWartaTextareaRef.current;
+        if (!textarea) return;
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const newText = editWartaIsi.substring(0, start) + tag + editWartaIsi.substring(end);
+        setEditWartaIsi(newText);
+        setTimeout(() => {
+            textarea.focus();
+            textarea.setSelectionRange(start + tag.length, start + tag.length);
+        }, 0);
+    }
+    setLinkModalOpen(false);
+    setLinkUrl('');
+    setLinkText('');
+    setCurrentLinkEditor(null);
+};
+
+// Fungsi menangani pembuatan link Pengumuman
+const openLinkModalPengumuman = () => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const selectedText = editPengumuman.isi.substring(start, end);
+    if (!selectedText) {
+        alert("Pilih teks terlebih dahulu untuk dijadikan link.");
+        return;
+    }
+    setLinkTextPengumuman(selectedText);
+    setLinkUrlPengumuman('');
+    setLinkModalOpenPengumuman(true);
+};
+
+const insertLinkPengumuman = () => {
+    if (!linkUrlPengumuman) {
+        alert("URL tidak boleh kosong.");
+        return;
+    }
+    let url = linkUrlPengumuman;
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        url = 'https://' + url;
+    }
+    const tag = `<a href="${url}" target="_blank" rel="noopener noreferrer">${linkTextPengumuman}</a>`;
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const newText = editPengumuman.isi.substring(0, start) + tag + editPengumuman.isi.substring(end);
+    setEditPengumuman({ ...editPengumuman, isi: newText });
+    setTimeout(() => {
+        textarea.focus();
+        textarea.setSelectionRange(start + tag.length, start + tag.length);
+    }, 0);
+    setLinkModalOpenPengumuman(false);
+    setLinkUrlPengumuman('');
+    setLinkTextPengumuman('');
+};
 
             // Fungsi simpan warta
             const handleWartaFormSubmit = async (e) => {
@@ -1157,7 +1429,8 @@
             password: adminToken,
             judul: wartaJudul,
             isi: wartaIsi,
-            gambarUrl: gambarUrl
+            gambarUrl: gambarUrl,
+            penulis: wartaPenulis
             })
             });
             const result = await res.json();
@@ -1166,6 +1439,7 @@
             setWartaJudul('');
             setWartaIsi('');
             setWartaGambar(null);
+            setWartaPenulis('');
             if (refreshWarta) refreshWarta();
             } else {
             alert("Gagal menyimpan: " + (result.message || "Unknown error"));
@@ -1176,28 +1450,143 @@
             setIsSavingWarta(false);
             };
 
-            // Fungsi untuk menyisipkan tag HTML BOLD
-            const insertFormatting = (tag) => {
-                const textarea = textareaRef.current;
-                if (!textarea) return;
-                
-                const start = textarea.selectionStart;
-                const end = textarea.selectionEnd;
-                const text = editPengumuman.isi;
-                const selectedText = text.substring(start, end);
-                
-                let newText = text;
-                if (tag === 'bold') {
-                    newText = text.substring(0, start) + '<strong>' + selectedText + '</strong>' + text.substring(end);
-                }
-                
-                setEditPengumuman({ ...editPengumuman, isi: newText });
-                
-                // Kembalikan fokus ke textarea
-                setTimeout(() => {
-                    textarea.focus();
-                }, 0);
+            // Fingsi Update dan Delete Warta
+            const handleEditWarta = (warta) => {
+                setEditingWarta(warta);
+                setEditWartaJudul(warta.judul);
+                setEditWartaIsi(warta.isi);
+                setEditWartaPenulis(warta.penulis || '');
+                setEditWartaGambar(null);
+                setEditWartaModal(true);
             };
+
+const handleUpdateWarta = async (e) => {
+  e.preventDefault();
+  if (!editingWarta) return;
+  setIsUpdatingWarta(true);
+  let gambarUrl = editingWarta.gambarUrl;
+  if (editWartaGambar) {
+    const reader = new FileReader();
+    reader.readAsDataURL(editWartaGambar);
+    await new Promise(resolve => { reader.onload = resolve; });
+    gambarUrl = reader.result;
+  }
+  try {
+    const res = await fetch(GAS_API_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'updateWarta',
+        password: adminToken,
+        rowIndex: editingWarta.rowIndex,
+        judul: editWartaJudul,
+        isi: editWartaIsi,
+        gambarUrl: gambarUrl,
+        penulis: editWartaPenulis
+      })
+    });
+    const result = await res.json();
+    if (result.success) {
+      alert("Warta berhasil diperbarui!");
+      setEditWartaModal(false);
+      setEditingWarta(null);
+      if (refreshWarta) refreshWarta();
+    } else {
+      alert("Gagal memperbarui: " + (result.message || "Unknown error"));
+    }
+  } catch (err) {
+    alert("Terjadi kesalahan: " + err.message);
+  }
+  setIsUpdatingWarta(false);
+};
+
+const handleDeleteWarta = async (rowIndex, judul) => {
+  if (!window.confirm(`Yakin ingin menghapus warta "${judul}"?`)) return;
+  try {
+    const res = await fetch(GAS_API_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'deleteWarta',
+        password: adminToken,
+        rowIndex: rowIndex
+      })
+    });
+    const result = await res.json();
+    if (result.success) {
+      alert("Warta berhasil dihapus!");
+      if (refreshWarta) refreshWarta();
+    } else {
+      alert("Gagal menghapus: " + (result.message || "Unknown error"));
+    }
+  } catch (err) {
+    alert("Terjadi kesalahan: " + err.message);
+  }
+};
+
+console.log("Data yang dikirim:", { judul: wartaJudul, isi: wartaIsi, penulis: wartaPenulis });
+
+            // Fungsi untuk menyisipkan tag HTML BOLD Pengumuman
+            const insertFormatting = (tag) => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const text = editPengumuman.isi;
+    const selectedText = text.substring(start, end);
+    let newText = text;
+    if (tag === 'bold') {
+        newText = text.substring(0, start) + '<strong>' + selectedText + '</strong>' + text.substring(end);
+    } else if (tag === 'italic') {
+        newText = text.substring(0, start) + '<em>' + selectedText + '</em>' + text.substring(end);
+    }
+    setEditPengumuman({ ...editPengumuman, isi: newText });
+    setTimeout(() => {
+        textarea.focus();
+        textarea.setSelectionRange(start + (tag === 'bold' ? 8 : 5), end + (tag === 'bold' ? 8 : 5));
+    }, 0);
+};
+
+            // Fungsi untuk insert formatting pada warta baru
+const insertWartaFormatting = (tag) => {
+  const textarea = wartaTextareaRef.current;
+  if (!textarea) return;
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+  const text = wartaIsi;
+  const selectedText = text.substring(start, end);
+  let newText = text;
+  if (tag === 'bold') {
+    newText = text.substring(0, start) + '<strong>' + selectedText + '</strong>' + text.substring(end);
+  } else if (tag === 'italic') {
+    newText = text.substring(0, start) + '<em>' + selectedText + '</em>' + text.substring(end);
+  }
+  setWartaIsi(newText);
+  setTimeout(() => {
+    textarea.focus();
+    textarea.setSelectionRange(start + (tag === 'bold' ? 8 : 5), end + (tag === 'bold' ? 8 : 5));
+  }, 0);
+};
+
+// Fungsi untuk insert formatting pada edit warta
+const insertEditWartaFormatting = (tag) => {
+  const textarea = editWartaTextareaRef.current;
+  if (!textarea) return;
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+  const text = editWartaIsi;
+  const selectedText = text.substring(start, end);
+  let newText = text;
+  if (tag === 'bold') {
+    newText = text.substring(0, start) + '<strong>' + selectedText + '</strong>' + text.substring(end);
+  } else if (tag === 'italic') {
+    newText = text.substring(0, start) + '<em>' + selectedText + '</em>' + text.substring(end);
+  }
+  setEditWartaIsi(newText);
+  setTimeout(() => {
+    textarea.focus();
+    textarea.setSelectionRange(start + (tag === 'bold' ? 8 : 5), end + (tag === 'bold' ? 8 : 5));
+  }, 0);
+};
+
 
             // ==========================================
             // State & Fungsi untuk Kelola Jadwal
@@ -1523,6 +1912,7 @@
             const handleHapusPejabat = (id) => { if (window.confirm("Yakin ingin menghapus data pelayan ini?")) { setDataPejabat(dataPejabat.filter(p => p.id !== id)); } };
 
             return (
+                
                 <div className="space-y-6 animate-fade-in relative z-10">
                     <div className="bg-white rounded-[1.5rem] shadow-sm border border-navy-100/60 overflow-hidden">
                         <div className="flex flex-col sm:flex-row border-b border-navy-50 bg-navy-50/20">
@@ -1533,6 +1923,113 @@
                         </div>
 
                         <div className={`p-4 md:p-6 ${adminTab === 'jadwal' ? 'bg-navy-50/30' : 'bg-white'}`}>
+                            {/* Modal Edit Warta */}
+{editWartaModal && (
+  <div className="fixed inset-0 z-[100] flex items-center justify-center bg-navy-900/60 px-4 backdrop-blur-md">
+    <div className="bg-white rounded-[1.5rem] shadow-2xl p-6 md:p-8 max-w-lg w-full relative border border-navy-100/60">
+      <button onClick={() => setEditWartaModal(false)} className="absolute top-4 right-4 text-navy-400 hover:text-red-500 transition-colors bg-navy-50 w-8 h-8 rounded-full flex items-center justify-center font-bold pb-1">&times;</button>
+      <h3 className="text-xl font-bold mb-4">Edit Warta</h3>
+      <form onSubmit={handleUpdateWarta}>
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-navy-700 mb-1">Judul Warta</label>
+          <input type="text" value={editWartaJudul} onChange={e => setEditWartaJudul(e.target.value)} required className="w-full px-4 py-2 border border-navy-300 rounded-lg focus:ring-2 focus:ring-navy-500" />
+        </div>
+        <div className="mb-4">
+  <label className="block text-sm font-medium text-navy-700 mb-1">Isi Warta</label>
+  <div className="flex gap-2 mb-2">
+    <button type="button" onClick={() => insertEditWartaFormatting('bold')} className="px-3 py-1 bg-navy-100 hover:bg-navy-200 text-navy-800 rounded font-bold text-sm">B</button>
+    <button type="button" onClick={() => insertEditWartaFormatting('italic')} className="px-3 py-1 bg-navy-100 hover:bg-navy-200 text-navy-800 rounded italic text-sm">I</button>
+    <button type="button" onClick={() => openLinkModal('editWarta')} className="px-3 py-1 bg-navy-100 hover:bg-navy-200 text-navy-800 rounded text-sm">
+    🔗 Link
+</button>
+    </div>
+  <textarea
+    ref={editWartaTextareaRef}
+    rows="5"
+    value={editWartaIsi}
+    onChange={e => setEditWartaIsi(e.target.value)}
+    required
+    className="w-full px-4 py-2 border border-navy-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+  ></textarea>
+</div>
+        <div className="mb-5">
+            <label className="block text-sm font-medium text-navy-700 mb-1">Penulis</label>
+            <input type="text" value={editWartaPenulis} onChange={e => setEditWartaPenulis(e.target.value)} className="w-full px-4 py-2 border border-navy-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-navy-700 mb-1">Ganti Gambar (Opsional)</label>
+          <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-navy-300 border-dashed rounded-lg">
+            <div className="space-y-1 text-center">
+              <div className="flex text-sm text-navy-600 justify-center">
+                <label className="relative cursor-pointer bg-white rounded-md font-medium text-gold-600 hover:text--500">
+                  <span>Pilih file gambar baru</span>
+                  <input type="file" accept="image/*" className="sr-only" onChange={(e) => setEditWartaGambar(e.target.files[0])} />
+                </label>
+              </div>
+              <p className="text-xs text-navy-500">PNG, JPG up to 10MB</p>
+              {editWartaGambar && <p className="text-sm font-semibold text-gold-600 mt-2">{editWartaGambar.name}</p>}
+            </div>
+          </div>
+          {editingWarta?.gambarUrl && !editWartaGambar && (
+            <center><div className="mt-2">
+              <p className="text-xs text-navy-500">Gambar saat ini:</p>
+              <img src={editingWarta.gambarUrl} className="h-16 w-auto object-cover mt-1 rounded" alt="current" />
+            </div></center>
+          )}
+        </div>
+        <button type="submit" disabled={isUpdatingWarta} className="w-full bg-navy-800 hover:bg-navy-400 text-gold-400 font-bold py-3 px-4 rounded-lg transition-colors">
+          {isUpdatingWarta ? "Menyimpan..." : "Simpan Perubahan"}
+        </button>
+      </form>
+    </div>
+  </div>
+)}
+
+{/* Modal Input URL untuk Link */}
+{linkModalOpen && (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-navy-900/60 px-4 backdrop-blur-md">
+        <div className="bg-white rounded-[1.5rem] shadow-2xl p-6 md:p-8 max-w-md w-full relative border border-navy-100/60">
+            <button onClick={() => setLinkModalOpen(false)} className="absolute top-4 right-4 text-navy-400 hover:text-red-500 transition-colors bg-navy-50 w-8 h-8 rounded-full flex items-center justify-center font-bold pb-1">&times;</button>
+            <h3 className="text-xl font-bold mb-4 text-navy-900">Masukkan URL Link</h3>
+            <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Teks yang akan di-link</label>
+                <input type="text" value={linkText} disabled className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100" />
+            </div>
+            <div className="mb-6">
+                <label className="block text-sm font-medium text-gray-700 mb-1">URL Tujuan</label>
+                <input type="url" value={linkUrl} onChange={e => setLinkUrl(e.target.value)} placeholder="https://..." className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" autoFocus />
+            </div>
+            <div className="flex justify-end gap-3">
+                <button onClick={() => setLinkModalOpen(false)} className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition">Batal</button>
+                <button onClick={insertLink} className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition">Sisipkan Link</button>
+            </div>
+        </div>
+    </div>
+)}
+
+
+{/* Modal Input URL untuk Link Pengumuman */}
+{linkModalOpenPengumuman && (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-navy-900/60 px-4 backdrop-blur-md">
+        <div className="bg-white rounded-[1.5rem] shadow-2xl p-6 md:p-8 max-w-md w-full relative border border-navy-100/60">
+            <button onClick={() => setLinkModalOpenPengumuman(false)} className="absolute top-4 right-4 text-navy-400 hover:text-red-500 transition-colors bg-navy-50 w-8 h-8 rounded-full flex items-center justify-center font-bold pb-1">&times;</button>
+            <h3 className="text-xl font-bold mb-4 text-navy-900">Masukkan URL Link</h3>
+            <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Teks yang akan di-link</label>
+                <input type="text" value={linkTextPengumuman} disabled className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100" />
+            </div>
+            <div className="mb-6">
+                <label className="block text-sm font-medium text-gray-700 mb-1">URL Tujuan</label>
+                <input type="url" value={linkUrlPengumuman} onChange={e => setLinkUrlPengumuman(e.target.value)} placeholder="https://..." className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" autoFocus />
+            </div>
+            <div className="flex justify-end gap-3">
+                <button onClick={() => setLinkModalOpenPengumuman(false)} className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition">Batal</button>
+                <button onClick={insertLinkPengumuman} className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition">Sisipkan Link</button>
+            </div>
+        </div>
+    </div>
+)}
+
                             {adminTab === 'jadwal' && (
                                 <div className="animate-fade-in space-y-4">
                                     <div className="flex items-center gap-2">
@@ -1705,45 +2202,111 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                
                             )}
 
                             {adminTab === 'warta' && (
+                                
                                 <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6 md:p-8">
                                     <div className="mb-8">
-                                        <h1 className="text-2xl font-bold text-gray-800">Input Warta Baru</h1>
-                                        <p className="text-gray-500">Silakan isi konten warta di bawah ini.</p>
+
+  <h3 className="text-xl font-bold text-navy-800 mb-4 border-b pb-2">Daftar Warta</h3>
+  {daftarWarta.length === 0 ? (
+    <p className="text-navy-500">Belum ada warta.</p>
+  ) : (
+    
+    <div className="space-y-4">
+  {daftarWarta.map((warta, idx) => {
+    const plainPreview = stripHtml(warta.isi);
+    const shortPreview = plainPreview.length > 200 ? plainPreview.substring(0, 200) + '...' : plainPreview;
+    return (
+      <div key={idx} className="border border-navy-200 rounded-lg p-4 bg-navy-50">
+        <center>
+          <div className="flex justify-between items-start">
+            <div>
+              <h4 className="font-bold text-navy-800">{warta.judul}</h4>
+              <p className="text-xs text-navy-500">{warta.tanggal}</p>
+            </div>
+            <div className="relative flex flex-col justify-between h-full">
+              <button onClick={() => handleEditWarta(warta)} className="p-2 text-gold-600 hover:bg-navy-100 rounded-full transition" title="Edit Warta">
+                <Icon name="Edit" className="w-4 h-4" />
+              </button>
+              <button onClick={() => handleDeleteWarta(warta.rowIndex, warta.judul)} className="p-2 text-navy-600 hover:bg-gold-100 rounded-full transition" title="Hapus Warta">
+                <Icon name="Trash" className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+          <p className="text-sm text-navy-700 mt-2">{shortPreview}</p>
+          {warta.gambarUrl && <img src={warta.gambarUrl} className="h-16 w-auto object-cover mt-2 rounded" alt="preview" />}
+        </center>
+      </div>
+    );
+  })}
+</div>
+  )}
+
+                                    
+                                        <h1 className="text-xl font-bold text-navy-800 mb-4 border-b pb-2">Input Warta Baru</h1>
+                                        <p className="text-navy-500">Silakan isi konten warta di bawah ini.</p>
                                     </div>
+                                    
                                     <form onSubmit={handleWartaFormSubmit}>
                                         <div className="mb-5">
-                                            <label className="block text-sm font-medium text-gray-700 mb-1">Judul Warta</label>
-                                            <input type="text" value={wartaJudul} onChange={e => setWartaJudul(e.target.value)} required className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
+                                            <label className="block text-sm font-medium text-navy-700 mb-1">Judul Warta</label>
+                                            <input type="text" value={wartaJudul} onChange={e => setWartaJudul(e.target.value)} required className="w-full px-4 py-2 border border-navy-300 rounded-lg focus:ring-2 focus:ring-navy-500" />
                                         </div>
                                         <div className="mb-5">
-                                            <label className="block text-sm font-medium text-gray-700 mb-1">Isi Warta</label>
-                                            <textarea rows="5" value={wartaIsi} onChange={e => setWartaIsi(e.target.value)} required className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"></textarea>
-                                        </div>
+  <label className="block text-sm font-medium text-navy-700 mb-1">Penulis</label>
+  <input 
+    type="text" 
+    value={wartaPenulis} 
+    onChange={e => setWartaPenulis(e.target.value)} 
+    className="w-full px-4 py-2 border border-navy-300 rounded-lg" 
+  />
+</div>
+                                        <div className="mb-5">
+  <label className="block text-sm font-medium text-navy-700 mb-1">Isi Warta</label>
+  <div className="flex gap-2 mb-2">
+    <button type="button" onClick={() => insertWartaFormatting('bold')} className="px-3 py-1 bg-navy-100 hover:bg-navy-200 text-navy-800 rounded font-bold text-sm">B</button>
+    <button type="button" onClick={() => insertWartaFormatting('italic')} className="px-3 py-1 bg-navy-100 hover:bg-navy-200 text-navy-800 rounded italic text-sm">I</button>
+  <button type="button" onClick={() => openLinkModal('warta')} className="px-3 py-1 bg-navy-100 hover:bg-navy-200 text-navy-800 rounded text-sm">
+    🔗 Link
+</button>
+    </div>
+  <textarea
+    ref={wartaTextareaRef}
+    rows="5"
+    value={wartaIsi}
+    onChange={e => setWartaIsi(e.target.value)}
+    required
+    className="w-full px-4 py-2 border border-navy-300 rounded-lg focus:ring-2 focus:ring-navy-500"
+  ></textarea>
+</div>
                                         <div className="mb-8">
-                                            <label className="block text-sm font-medium text-gray-700 mb-1">Unggah Gambar (Opsional)</label>
-                                            <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg">
+                                            <label className="block text-sm font-medium text-navy-700 mb-1">Unggah Gambar (Opsional)</label>
+                                            <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-navy-300 border-dashed rounded-lg">
                                                 <div className="space-y-1 text-center">
-                                                    <div className="flex text-sm text-gray-600 justify-center">
-                                                        <label className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500">
+                                                    <div className="flex text-sm text-navy-600 justify-center">
+                                                        <label className="relative cursor-pointer bg-white rounded-md font-medium text-gold-400 hover:text-navy-800">
                                                             <span>Pilih file gambar</span>
                                                             <input type="file" accept="image/*" className="sr-only" onChange={(e) => setWartaGambar(e.target.files[0])} />
                                                         </label>
                                                     </div>
-                                                    <p className="text-xs text-gray-500">PNG, JPG up to 10MB</p>
-                                                    {wartaGambar && <p className="text-sm font-semibold text-blue-600 mt-2">{wartaGambar.name}</p>}
+                                                    <p className="text-xs text-navy-500">PNG, JPG up to 10MB</p>
+                                                    {wartaGambar && <p className="text-sm font-semibold text-navy-600 mt-2">{wartaGambar.name}</p>}
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" disabled={isSavingWarta} className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
+                                        <button type="submit" disabled={isSavingWarta} className="w-full bg-navy-900 hover:bg-navy-800 text-gold-400 shadow-md hover:shadow-lg font-bold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
                                             {isSavingWarta ? "Menyimpan..." : "Simpan Warta"}
                                         </button>
                                     </form>
                                 </div>
+                                
                             )}
 
+                            
 
                             {adminTab === 'pelayan' && (
                                 <div className="space-y-6 animate-fade-in bg-white p-2 md:p-4 rounded-xl">
@@ -1841,7 +2404,7 @@
                                                 <label className="block text-xs font-bold text-navy-700 mb-2 uppercase tracking-widest">Password Lama</label>
                                                 <div className="relative">
                                                     <input type={showOldPass ? "text" : "password"} value={oldPassword} onChange={e => setOldPassword(e.target.value)} required className="w-full p-3.5 border border-navy-200 rounded-xl focus:border-gold-500 outline-none transition-colors bg-white text-sm font-bold shadow-sm pr-12" placeholder="Masukkan password lama" />
-                                                    <button type="button" onClick={() => setShowOldPass(!showOldPass)} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-navy-400 hover:text-navy-600 transition-colors">
+                                                    <button type="button" onClick={() => setShowOldPass(!showOldPass)} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-navy-400 hover:text-white-600 transition-colors">
                                                         <Icon name={showOldPass ? "EyeOff" : "Eye"} className="w-5 h-5" />
                                                     </button>
                                                 </div>
@@ -1850,7 +2413,7 @@
                                                 <label className="block text-xs font-bold text-navy-700 mb-2 uppercase tracking-widest">Password Baru</label>
                                                 <div className="relative">
                                                     <input type={showNewPass ? "text" : "password"} value={newPassword} onChange={e => setNewPassword(e.target.value)} required className="w-full p-3.5 border border-navy-200 rounded-xl focus:border-gold-500 outline-none transition-colors bg-navy-50/50 text-sm font-bold shadow-sm pr-12" placeholder="Masukkan password baru" />
-                                                    <button type="button" onClick={() => setShowNewPass(!showNewPass)} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-navy-400 hover:text-navy-600 transition-colors">
+                                                    <button type="button" onClick={() => setShowNewPass(!showNewPass)} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-navy-400 hover:text-white-600 transition-colors">
                                                         <Icon name={showNewPass ? "EyeOff" : "Eye"} className="w-5 h-5" />
                                                     </button>
                                                 </div>
@@ -1895,10 +2458,14 @@
                                                     <label className="block text-xs font-bold text-navy-700 uppercase tracking-widest">Isi Pengumuman</label>
                                                     <div className="flex space-x-2">
                                                         <button type="button" onClick={() => insertFormatting('bold')} className="px-3 py-1 bg-navy-100 hover:bg-navy-200 text-navy-800 rounded font-bold text-sm shadow-sm transition-colors" title="Beri efek tebal pada teks yang dipilih">B</button>
-                                                        </div>
+                                                        <button type="button" onClick={() => insertFormatting('italic')} className="px-3 py-1 bg-navy-100 hover:bg-navy-200 text-navy-800 rounded italic text-sm">I</button>
+                                                        <button type="button" onClick={openLinkModalPengumuman} className="px-3 py-1 bg-navy-100 hover:bg-navy-200 text-navy-800 rounded text-sm">
+    🔗 Link
+</button>
+                                                    </div>
                                                 </div>
                                                 <textarea ref={textareaRef} value={editPengumuman.isi} onChange={e => setEditPengumuman({...editPengumuman, isi: e.target.value})} rows="5" placeholder="Kosongkan isi untuk menyembunyikan kotak pengumuman..." className="w-full p-3.5 border border-navy-200 rounded-xl focus:border-gold-500 outline-none transition-colors bg-navy-50/50 text-sm font-medium shadow-sm leading-relaxed whitespace-pre-wrap"></textarea>
-                                                <p className="text-[10px] text-navy-500 mt-2 font-bold leading-relaxed bg-navy-50 p-2.5 rounded-lg border border-navy-100">Blok teks pada kotak lalu tekan tombol B untuk menambahkan format tebal. Hapus semua isi teks untuk menyembunyikan pengumuman dari layar utama.</p>
+                                                <p className="text-[10px] text-navy-500 mt-2 font-bold leading-relaxed bg-navy-50 p-2.5 rounded-lg border border-navy-100">Blok teks pada kotak lalu tekan tombol B untuk menambahkan format tebal, tombol I untuk menambahkan format italic dan tombol link untuk menambahkan hyperlink. Hapus semua isi teks untuk menyembunyikan pengumuman dari layar utama.</p>
                                             </div>
                                             <button type="submit" disabled={isSavingPengumuman} className={`w-full ${isSavingPengumuman ? 'bg-navy-300 text-navy-500 cursor-not-allowed' : 'bg-navy-900 hover:bg-navy-800 text-gold-400 shadow-md hover:shadow-lg'} font-bold py-3.5 rounded-xl transition-all flex justify-center items-center`}>
                                                 {isSavingPengumuman ? <><span className="w-4 h-4 border-2 border-navy-500 border-t-white rounded-full animate-spin mr-2"></span> Menyimpan...</> : 'Simpan Pengumuman'}
@@ -1968,14 +2535,17 @@
 
             // Fungsi refresh warta
             const refreshWarta = async () => {
-                try {
-                    const res = await fetch(`${GAS_API_URL}?action=getData`);
-                    const data = await res.json();
-                    if (data.daftarWarta) setDaftarWarta(data.daftarWarta);
-                } catch (err) {
-                    console.error("Gagal refresh warta", err);
-                }
-            };
+    try {
+        const res = await fetch(`${GAS_API_URL}?action=getData`);
+        const data = await res.json();
+        if (data.daftarWarta) {
+            console.log("Warta diterima:", data.daftarWarta);
+            setDaftarWarta(data.daftarWarta);
+        }
+    } catch (err) {
+        console.error("Gagal refresh warta", err);
+    }
+};
 
             const today = new Date();
             today.setHours(0, 0, 0, 0);
@@ -2104,14 +2674,23 @@
                     case 'hubungi': return <Hubungi setActiveTab={setActiveTab} dataPejabat={dataPejabat} />;
                     case 'form_acms': return <FormACMS setActiveTab={setActiveTab} />;
                     case 'susunan_ibadah': return <SusunanIbadah setActiveTab={setActiveTab} activeSabat={activeSabat} sabatYMD={sabatYMD} />;
-                    case 'admin_dashboard': return isAdminLoggedIn ? <AdminDashboard dataPejabat={dataPejabat} setDataPejabat={setDataPejabat} jadwalDB={jadwalDB} setJadwalDB={setJadwalDB} adminToken={adminToken} setAdminToken={setAdminToken} youtubeUrl={youtubeUrl} setYoutubeUrl={setYoutubeUrl} kategoriPejabat={kategoriPejabat} setKategoriPejabat={setKategoriPejabat} pengumuman={pengumuman} setPengumuman={setPengumuman} /> : <Home setActiveTab={setActiveTab} youtubeUrl={youtubeUrl} pengumuman={pengumuman} />;
-                    default: return <Home setActiveTab={setActiveTab} youtubeUrl={youtubeUrl} pengumuman={pengumuman} />;
-                }
-            };
+                    case 'admin_dashboard': return isAdminLoggedIn ? <AdminDashboard 
+                            dataPejabat={dataPejabat} setDataPejabat={setDataPejabat}
+                            jadwalDB={jadwalDB} setJadwalDB={setJadwalDB}
+                            adminToken={adminToken} setAdminToken={setAdminToken}
+                            youtubeUrl={youtubeUrl} setYoutubeUrl={setYoutubeUrl}
+                            kategoriPejabat={kategoriPejabat} setKategoriPejabat={setKategoriPejabat}
+                            pengumuman={pengumuman} setPengumuman={setPengumuman}
+                            daftarWarta={daftarWarta} setDaftarWarta={setDaftarWarta}
+                            refreshWarta={refreshWarta}
+                            /> : 
+                        <Home setActiveTab={setActiveTab} youtubeUrl={youtubeUrl} pengumuman={pengumuman} />;
+                        }
+                     };
 
             if (isAppLoading) {
                 return (
-                    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center relative">
+                    <div className="min-h-screen bg-navy-50 flex flex-col items-center justify-center relative">
                         {/* Loading Spinner di Tengah */}
                         <div className="flex flex-col items-center justify-center mt-[-10vh]">
                             <div className="w-12 h-12 border-4 border-navy-100 border-t-gold-500 rounded-full animate-spin mb-4 shadow-sm"></div>
@@ -2126,15 +2705,30 @@
             }
 
             return (
-                <div className="min-h-screen bg-gray-50 flex flex-col">
+                <div className="min-h-screen bg-navy-50 flex flex-col">
                     <LoginModal isOpen={showLoginModal} onClose={() => setShowLoginModal(false)} onSuccess={(token) => { setAdminToken(token); setIsAdminLoggedIn(true); setShowLoginModal(false); setActiveTab('admin_dashboard'); }} />
 
                     <header className="md:hidden bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-navy-50 shadow-sm">
-                        <div className="flex justify-between items-center px-5 py-4">
-                            <img src="./PisgahLogoColor.png" alt="PISGAH-BISDAC Logo" className="h-7 w-auto" />
-                            {isAdminLoggedIn ? (<button onClick={handleLogout} className="p-2.5 bg-red-50 rounded-full text-red-600 hover:bg-red-100 transition"><Icon name="LogOut" className="w-4 h-4" /></button>) : (<button onClick={handleAdminClick} className="p-2.5 bg-navy-50 rounded-full text-navy-700 hover:bg-navy-100 transition"><Icon name="LogIn" className="w-4 h-4" /></button>)}
-                        </div>
-                    </header>
+    <div className="flex justify-between items-center px-5 py-4">
+        <img src="./PisgahLogoColor.png" alt="PISGAH-BISDAC Logo" className="h-7 w-auto" />
+        <div className="flex gap-2">
+            {isAdminLoggedIn ? (
+                <>
+                    <button onClick={() => setActiveTab('admin_dashboard')} className="p-2.5 bg-navy-50 rounded-full text-navy-700 hover:bg-navy-100 transition" title="Dashboard">
+                        <Icon name="Settings" className="w-4 h-4" />
+                    </button>
+                    <button onClick={handleLogout} className="p-2.5 bg-red-50 rounded-full text-red-600 hover:bg-red-100 transition" title="Logout">
+                        <Icon name="LogOut" className="w-4 h-4" />
+                    </button>
+                </>
+            ) : (
+                <button onClick={handleAdminClick} className="p-2.5 bg-navy-50 rounded-full text-navy-700 hover:bg-navy-100 transition" title="Admin Login">
+                    <Icon name="LogIn" className="w-4 h-4" />
+                </button>
+            )}
+        </div>
+    </div>
+</header>
 
                     <header className="hidden md:block bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-navy-50 shadow-sm">
                         <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
