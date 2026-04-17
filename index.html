@@ -103,9 +103,17 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
         .animate-fade-in {
             animation: fadeIn 0.4s ease-out;
         }
@@ -121,8 +129,11 @@
         <!-- Preloader: Ditampilkan saat React & Babel sedang diproses, mencegah blank screen lambat -->
         <div class="min-h-screen bg-gray-50 flex flex-col items-center justify-center relative">
             <div class="flex flex-col items-center justify-center mt-[-10vh]">
-                <div class="w-12 h-12 border-4 border-navy-100 border-t-gold-500 rounded-full animate-[spin_1s_linear_infinite] mb-4 shadow-sm"></div>
-                <p class="text-navy-500 font-bold uppercase tracking-widest text-xs animate-pulse">Memuat Aplikasi...</p>
+                <div
+                    class="w-12 h-12 border-4 border-navy-100 border-t-gold-500 rounded-full animate-[spin_1s_linear_infinite] mb-4 shadow-sm">
+                </div>
+                <p class="text-navy-500 font-bold uppercase tracking-widest text-xs animate-pulse">Memuat Aplikasi...
+                </p>
             </div>
             <div class="absolute bottom-[25%] flex flex-col items-center animate-fade-in">
                 <!-- SVG Load Fallback (Optional) -->
@@ -206,7 +217,7 @@
                 MessageCircle: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></svg>,
                 Phone: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>,
                 ChevronLeft: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="15 18 9 12 15 6" /></svg>,
-                ArrowLeft: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>,
+                ArrowLeft: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m12 19-7-7 7-7" /><path d="M19 12H5" /></svg>,
                 ChevronRight: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="9 18 15 12 9 6" /></svg>,
                 ChevronDown: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="6 9 12 15 18 9" /></svg>,
                 Check: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="20 6 9 17 4 12" /></svg>,
@@ -894,7 +905,7 @@
                                 <div className="w-40 md:w-48 bg-white border border-navy-100 p-2.5 rounded-xl shadow-sm mb-4"><img src={qrisUrl} alt="QRIS GMAHK Tidar 1" className="w-full h-auto object-contain rounded-lg" crossOrigin="anonymous" /></div>
                                 <a href={qrisUrl} target="_blank" rel="noopener noreferrer" download="QRIS_GMAHK_Tidar1.jpg" className="bg-navy-900 hover:bg-navy-800 text-gold-400 px-5 py-2.5 rounded-xl text-xs font-bold transition flex items-center space-x-2 shadow"><Icon name="Download" className="w-3.5 h-3.5" /><span>Download QRIS</span></a>
                             </div>
-                            <div className="flex flex-col justify-center text-center p-6 bg-gradient-to-br from-navy-800 to-navy-900 border border-gold-300 rounded-2xl h-full shadow-sm text-gold-400">
+                            <div className="flex flex-col justify-center text-center p-6 bg-navy-900 border border-gold-300 rounded-2xl h-full shadow-sm text-gold-400">
                                 <p className="text-xs md:text-sm font-bold mb-1 tracking-wide uppercase">Atau Transfer Bank ke:</p><p className="font-extrabold text-2xl md:text-3xl tracking-widest my-2 font-mono">511-44-7777-8</p><p className="text-xs md:text-sm font-bold opacity-90">BCA a/n GMAHK Tidar 1 Surabaya</p>
                             </div>
                         </div>
@@ -1884,35 +1895,35 @@
         // --- COMPONENT: SEARCH ---
         const Search = ({ setActiveTab, jadwalDB, rabuYMD, sabatYMD, tabs }) => {
             const [query, setQuery] = React.useState('');
-            
+
             const today = new Date();
             today.setHours(0, 0, 0, 0);
 
             // Filter menus
             const filteredMenus = tabs.filter(t => t.id !== 'admin_dashboard' && t.id !== 'search' && t.label.toLowerCase().includes(query.toLowerCase()));
-            
+
             // Filter future schedules for the officer
             let futureJadwal = [];
-            
+
             if (query.length >= 2) {
                 // Collect default rabu, sabat
                 const allDatesInDB = Object.keys(jadwalDB);
                 // Also add this week's rabuYMD and sabatYMD just in case they are not in DB and use default
                 if (!allDatesInDB.includes(rabuYMD)) allDatesInDB.push(rabuYMD);
                 if (!allDatesInDB.includes(sabatYMD)) allDatesInDB.push(sabatYMD);
-                
+
                 const uniqueDates = [...new Set(allDatesInDB)];
-                
+
                 // Sort dates ascending
-                uniqueDates.sort((a,b) => new Date(a) - new Date(b));
-                
+                uniqueDates.sort((a, b) => new Date(a) - new Date(b));
+
                 uniqueDates.forEach(dateStr => {
                     const dObj = new Date(dateStr + "T00:00:00");
                     if (dObj >= today) {
                         const jData = jadwalDB[dateStr];
                         const isRabu = dObj.getDay() === 3;
                         let foundTugas = [];
-                        
+
                         if (isRabu) {
                             const data = jData ? jData.petugas : initialJadwalRabu.petugas;
                             if (data) {
@@ -1935,7 +1946,7 @@
                                 }
                             });
                         }
-                        
+
                         if (foundTugas.length > 0) {
                             futureJadwal.push({
                                 date: dateStr,
@@ -1953,10 +1964,10 @@
                         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-navy-400">
                             <Icon name="Search" className="w-5 h-5" />
                         </div>
-                        <input 
-                            type="text" 
+                        <input
+                            type="text"
                             autoFocus
-                            placeholder="Cari Menu atau Nama Petugas..." 
+                            placeholder="Cari Menu atau Nama Petugas..."
                             className="w-full pl-12 pr-4 py-4 bg-white border border-navy-100/80 rounded-2xl text-base font-bold text-navy-900 placeholder-navy-300 outline-none focus:border-gold-500 shadow-sm transition-all"
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
